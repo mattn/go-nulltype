@@ -51,8 +51,6 @@ func (b NullBool) MarshalJSON() ([]byte, error) {
 func (b *NullBool) UnmarshalJSON(data []byte) error {
 	var value *bool
 	if err := json.Unmarshal(data, &value); err != nil {
-		b.b.Bool = false
-		b.b.Valid = false
 		return err
 	}
 	b.b.Valid = value != nil

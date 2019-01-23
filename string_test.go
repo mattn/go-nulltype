@@ -88,6 +88,11 @@ func TestNullStringUnmarshalJSON(t *testing.T) {
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
+
+	err = json.NewDecoder(strings.NewReader("XXX")).Decode(&s)
+	if err == nil {
+		t.Fatal("should be fail")
+	}
 }
 
 func TestNullStringValueConverter(t *testing.T) {

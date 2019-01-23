@@ -48,8 +48,6 @@ func (s NullString) MarshalJSON() ([]byte, error) {
 func (s *NullString) UnmarshalJSON(data []byte) error {
 	var value *string
 	if err := json.Unmarshal(data, &value); err != nil {
-		s.s.String = ""
-		s.s.Valid = false
 		return err
 	}
 	s.s.Valid = value != nil

@@ -49,8 +49,6 @@ func (f NullFloat64) MarshalJSON() ([]byte, error) {
 func (f *NullFloat64) UnmarshalJSON(data []byte) error {
 	var value *float64
 	if err := json.Unmarshal(data, &value); err != nil {
-		f.f.Float64 = 0
-		f.f.Valid = false
 		return err
 	}
 	f.f.Valid = value != nil
