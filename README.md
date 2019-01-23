@@ -1,5 +1,8 @@
 # go-nulltype
 
+[![Build Status](https://travis-ci.org/mattn/go-nulltype.svg?branch=master)](https://travis-ci.org/mattn/go-nulltype)
+[![codecov](https://codecov.io/gh/mattn/go-nulltype/branch/master/graph/badge.svg)](https://codecov.io/gh/mattn/go-nulltype)
+
 Nullable types friendly to json.Encoder, json.Decoder, database/sql, fmt.Stringer.
 
 ## Usage
@@ -49,6 +52,14 @@ fmt.Println(user.Name) // Bob
 s = `{"name": null}`
 json.NewDecoder(strings.NewReader(s)).Decode(&user)
 fmt.Println(user.Name) // nil
+```
+
+### friendly to database/sql
+
+```go
+var user User
+db.QueryRow(`SELECT name FROM users`).Decode(&user.Name)
+fmt.Println(user.Name) // Bob or nil
 ```
 
 ## Installation
