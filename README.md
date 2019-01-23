@@ -24,7 +24,6 @@ fmt.Println(user.Name) // nil
 user.Name.Set("Bob")
 fmt.Println(user.Name) // Bob
 
-user.Name.Value()
 fmt.Println(user.Name.Value() == "Bob") // true
 
 user.Name.Reset()
