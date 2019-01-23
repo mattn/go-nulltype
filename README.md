@@ -58,8 +58,9 @@ fmt.Println(user.Name) // nil
 
 ```go
 var user User
-db.QueryRow(`SELECT name FROM users`).Decode(&user.Name)
+db.QueryRow(`SELECT name FROM users`).Scan(&user.Name)
 fmt.Println(user.Name) // Bob or nil
+db.Exec(`INSERT INTO users(name) VALUES($1)`, user.Name)
 ```
 
 ## Installation

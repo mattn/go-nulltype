@@ -2,6 +2,7 @@ package nulltype
 
 import (
 	"database/sql"
+	"database/sql/driver"
 	"encoding/json"
 	"fmt"
 )
@@ -23,8 +24,8 @@ func (i *NullInt64) Valid() bool {
 	return i.i.Valid
 }
 
-// Value return the value.
-func (i *NullInt64) Value() int64 {
+// ToValue return the value.
+func (i *NullInt64) ToValue() int64 {
 	return i.i.Int64
 }
 
@@ -75,4 +76,9 @@ func (i *NullInt64) UnmarshalJSON(data []byte) error {
 		i.i.Int64 = *value
 	}
 	return nil
+}
+
+// Value implement driver.Valuer.
+func (i NullInt64) Value() (driver.Value, error) {
+	return i.i.Int64, nil
 }

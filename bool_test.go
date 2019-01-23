@@ -105,7 +105,7 @@ func TestNullBoolUnmarshalJSON(t *testing.T) {
 	}
 
 	want := true
-	got := b.Value()
+	got := b.ToValue()
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
@@ -129,8 +129,16 @@ func TestNullBoolValueConverter(t *testing.T) {
 	}
 
 	want := true
-	got := b.Value()
+	got := b.ToValue()
 	if got != want {
+		t.Fatalf("want %v, but %v:", want, got)
+	}
+
+	gotv, err := b.Value()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if gotv != want {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
 }

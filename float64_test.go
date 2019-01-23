@@ -93,7 +93,7 @@ func TestNullFloat64UnmarshalJSON(t *testing.T) {
 	}
 
 	want := 3.14
-	got := f.Value()
+	got := f.ToValue()
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
@@ -117,8 +117,16 @@ func TestNullFloat64ValueConverter(t *testing.T) {
 	}
 
 	want := 3.14
-	got := f.Value()
+	got := f.ToValue()
 	if got != want {
+		t.Fatalf("want %v, but %v:", want, got)
+	}
+
+	gotv, err := f.Value()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if gotv != want {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
 }
