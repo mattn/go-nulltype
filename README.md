@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/mattn/go-nulltype.svg?branch=master)](https://travis-ci.org/mattn/go-nulltype)
 [![codecov](https://codecov.io/gh/mattn/go-nulltype/branch/master/graph/badge.svg)](https://codecov.io/gh/mattn/go-nulltype)
 
-Nullable types friendly to json.Encoder, json.Decoder, database/sql, fmt.Stringer.
+Nullable types friendly to json.Encoder, json.Decoder, database/sql, fmt.Stringer, some of ORMs.
 
 ## Usage
 
@@ -61,6 +61,26 @@ var user User
 db.QueryRow(`SELECT name FROM users`).Scan(&user.Name)
 fmt.Println(user.Name) // Bob or nil
 db.Exec(`INSERT INTO users(name) VALUES($1)`, user.Name)
+```
+
+### friendly to ORM
+
+```go
+type Post struct {
+	Id      int64 `db:"post_id"`
+	Created int64
+	Title   string              `db:",size:50"`
+	Body    nulltype.NullString `db:"body,size:1024"`
+}
+```
+
+```go
+p := Post{
+	Created: time.Now().UnixNano(),
+	Title:   title,
+	Body:    nulltype.NullStringOf(body),
+}
+err = dbmap.Insert(&p)
 ```
 
 ## Installation
