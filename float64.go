@@ -6,32 +6,39 @@ import (
 	"fmt"
 )
 
+// NullFloat64 is null friendly type for float64.
 type NullFloat64 struct {
 	f sql.NullFloat64
 }
 
+// Valid return the value is valid. If true, it is not null value.
 func (f *NullFloat64) Valid() bool {
 	return f.f.Valid
 }
 
+// Value return the value.
 func (f *NullFloat64) Value() float64 {
 	return f.f.Float64
 }
 
+// Reset set nil to the value.
 func (f *NullFloat64) Reset() {
 	f.f.Float64 = 0
 	f.f.Valid = false
 }
 
+// Set set the value.
 func (f *NullFloat64) Set(value float64) {
 	f.f.Valid = true
 	f.f.Float64 = value
 }
 
+// Scan is a method for database/sql.
 func (f *NullFloat64) Scan(value interface{}) error {
 	return f.f.Scan(value)
 }
 
+// String return string indicated the value.
 func (f NullFloat64) String() string {
 	if !f.f.Valid {
 		return "nil"
@@ -39,6 +46,7 @@ func (f NullFloat64) String() string {
 	return fmt.Sprint(f.f.Float64)
 }
 
+// MarshalJSON encode the value to JSON.
 func (f NullFloat64) MarshalJSON() ([]byte, error) {
 	if !f.f.Valid {
 		return []byte("null"), nil
@@ -46,6 +54,7 @@ func (f NullFloat64) MarshalJSON() ([]byte, error) {
 	return json.Marshal(f.f.Float64)
 }
 
+// UnmarshalJSON decode data to the value.
 func (f *NullFloat64) UnmarshalJSON(data []byte) error {
 	var value *float64
 	if err := json.Unmarshal(data, &value); err != nil {
