@@ -9,27 +9,34 @@ import (
 )
 
 func TestNullStringStringer(t *testing.T) {
-	var b NullString
+	var s NullString
 
 	want := "nil"
-	got := fmt.Sprint(b)
+	got := fmt.Sprint(s)
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
 
 	want = "foo"
-	b.Set("foo")
-	got = fmt.Sprint(b)
+	s.Set("foo")
+	got = fmt.Sprint(s)
+	if got != want {
+		t.Fatalf("want %v, but %v:", want, got)
+	}
+
+	want = "nil"
+	s.Reset()
+	got = fmt.Sprint(s)
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
 }
 
 func TestNullStringMarshalJSON(t *testing.T) {
-	var b NullString
+	var s NullString
 
 	var buf bytes.Buffer
-	err := json.NewEncoder(&buf).Encode(b)
+	err := json.NewEncoder(&buf).Encode(s)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -42,8 +49,8 @@ func TestNullStringMarshalJSON(t *testing.T) {
 
 	buf.Reset()
 
-	b.Set("foo")
-	err = json.NewEncoder(&buf).Encode(b)
+	s.Set("foo")
+	err = json.NewEncoder(&buf).Encode(s)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -56,47 +63,47 @@ func TestNullStringMarshalJSON(t *testing.T) {
 }
 
 func TestNullStringUnmarshalJSON(t *testing.T) {
-	var b NullString
+	var s NullString
 
-	err := json.NewDecoder(strings.NewReader("null")).Decode(&b)
+	err := json.NewDecoder(strings.NewReader("null")).Decode(&s)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	if b.Valid() {
-		t.Fatalf("must be null but got %v", b)
+	if s.Valid() {
+		t.Fatalf("must be null but got %v", s)
 	}
 
-	err = json.NewDecoder(strings.NewReader(`"foo"`)).Decode(&b)
+	err = json.NewDecoder(strings.NewReader(`"foo"`)).Decode(&s)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	if !b.Valid() {
+	if !s.Valid() {
 		t.Fatalf("must not be null but got nil")
 	}
 
 	want := "foo"
-	got := b.Value()
+	got := s.Value()
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
 }
 
 func TestNullStringValueConverter(t *testing.T) {
-	var b NullString
+	var s NullString
 
-	err := b.Scan("1")
+	err := s.Scan("1")
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	if !b.Valid() {
+	if !s.Valid() {
 		t.Fatalf("must not be null but got nil")
 	}
 
 	want := "1"
-	got := b.Value()
+	got := s.Value()
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)
 	}

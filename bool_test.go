@@ -30,6 +30,13 @@ func TestNullBoolStringer(t *testing.T) {
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
+
+	want = "nil"
+	b.Reset()
+	got = fmt.Sprint(b)
+	if got != want {
+		t.Fatalf("want %v, but %v:", want, got)
+	}
 }
 
 func TestNullBoolMarshalJSON(t *testing.T) {

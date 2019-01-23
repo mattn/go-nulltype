@@ -9,27 +9,34 @@ import (
 )
 
 func TestNullInt64Stringer(t *testing.T) {
-	var b NullInt64
+	var i NullInt64
 
 	want := "nil"
-	got := fmt.Sprint(b)
+	got := fmt.Sprint(i)
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
 
 	want = "3"
-	b.Set(3)
-	got = fmt.Sprint(b)
+	i.Set(3)
+	got = fmt.Sprint(i)
+	if got != want {
+		t.Fatalf("want %v, but %v:", want, got)
+	}
+
+	want = "nil"
+	i.Reset()
+	got = fmt.Sprint(i)
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
 }
 
 func TestNullInt64MarshalJSON(t *testing.T) {
-	var b NullInt64
+	var i NullInt64
 
 	var buf bytes.Buffer
-	err := json.NewEncoder(&buf).Encode(b)
+	err := json.NewEncoder(&buf).Encode(i)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -42,8 +49,8 @@ func TestNullInt64MarshalJSON(t *testing.T) {
 
 	buf.Reset()
 
-	b.Set(3)
-	err = json.NewEncoder(&buf).Encode(b)
+	i.Set(3)
+	err = json.NewEncoder(&buf).Encode(i)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -56,47 +63,47 @@ func TestNullInt64MarshalJSON(t *testing.T) {
 }
 
 func TestNullInt64UnmarshalJSON(t *testing.T) {
-	var b NullInt64
+	var i NullInt64
 
-	err := json.NewDecoder(strings.NewReader("null")).Decode(&b)
+	err := json.NewDecoder(strings.NewReader("null")).Decode(&i)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	if b.Valid() {
-		t.Fatalf("must be null but got %v", b)
+	if i.Valid() {
+		t.Fatalf("must be null but got %v", i)
 	}
 
-	err = json.NewDecoder(strings.NewReader(`3`)).Decode(&b)
+	err = json.NewDecoder(strings.NewReader(`3`)).Decode(&i)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	if !b.Valid() {
+	if !i.Valid() {
 		t.Fatalf("must not be null but got nil")
 	}
 
 	want := int64(3)
-	got := b.Value()
+	got := i.Value()
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
 }
 
 func TestNullInt64ValueConverter(t *testing.T) {
-	var b NullInt64
+	var i NullInt64
 
-	err := b.Scan("3")
+	err := i.Scan("3")
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	if !b.Valid() {
+	if !i.Valid() {
 		t.Fatalf("must not be null but got nil")
 	}
 
 	want := int64(3)
-	got := b.Value()
+	got := i.Value()
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
