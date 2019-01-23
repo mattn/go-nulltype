@@ -25,7 +25,7 @@ func TestNullBoolStringer(t *testing.T) {
 	}
 
 	want = "false"
-	b.Set(false)
+	b = NullBoolOf(false)
 	got = fmt.Sprint(b)
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)

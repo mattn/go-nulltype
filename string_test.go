@@ -24,6 +24,13 @@ func TestNullStringStringer(t *testing.T) {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
 
+	want = "bar"
+	s = NullStringOf("bar")
+	got = fmt.Sprint(s)
+	if got != want {
+		t.Fatalf("want %v, but %v:", want, got)
+	}
+
 	want = "nil"
 	s.Reset()
 	got = fmt.Sprint(s)

@@ -24,6 +24,12 @@ func TestNullInt64Stringer(t *testing.T) {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
 
+	want = "5"
+	i = NullInt64Of(5)
+	got = fmt.Sprint(i)
+	if got != want {
+		t.Fatalf("want %v, but %v:", want, got)
+	}
 	want = "nil"
 	i.Reset()
 	got = fmt.Sprint(i)

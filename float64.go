@@ -11,6 +11,13 @@ type NullFloat64 struct {
 	f sql.NullFloat64
 }
 
+// NullFloat64Of return NullFloat64 that he value is set.
+func NullFloat64Of(value float64) NullFloat64 {
+	var s NullFloat64
+	s.Set(value)
+	return s
+}
+
 // Valid return the value is valid. If true, it is not null value.
 func (f *NullFloat64) Valid() bool {
 	return f.f.Valid
@@ -28,9 +35,10 @@ func (f *NullFloat64) Reset() {
 }
 
 // Set set the value.
-func (f *NullFloat64) Set(value float64) {
+func (f *NullFloat64) Set(value float64) *NullFloat64 {
 	f.f.Valid = true
 	f.f.Float64 = value
+	return f
 }
 
 // Scan is a method for database/sql.

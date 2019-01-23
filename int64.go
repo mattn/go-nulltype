@@ -11,6 +11,13 @@ type NullInt64 struct {
 	i sql.NullInt64
 }
 
+// NullInt64Of return NullInt64 that he value is set.
+func NullInt64Of(value int64) NullInt64 {
+	var s NullInt64
+	s.Set(value)
+	return s
+}
+
 // Valid return the value is valid. If true, it is not null value.
 func (i *NullInt64) Valid() bool {
 	return i.i.Valid
@@ -28,9 +35,10 @@ func (i *NullInt64) Reset() {
 }
 
 // Set set the value.
-func (i *NullInt64) Set(value int64) {
+func (i *NullInt64) Set(value int64) *NullInt64 {
 	i.i.Valid = true
 	i.i.Int64 = value
+	return i
 }
 
 // Scan is a method for database/sql.

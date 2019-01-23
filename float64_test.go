@@ -24,6 +24,13 @@ func TestNullFloat64Stringer(t *testing.T) {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
 
+	want = "3.15"
+	f = NullFloat64Of(3.15)
+	got = fmt.Sprint(f)
+	if got != want {
+		t.Fatalf("want %v, but %v:", want, got)
+	}
+
 	want = "nil"
 	f.Reset()
 	got = fmt.Sprint(f)

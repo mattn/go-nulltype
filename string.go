@@ -10,6 +10,13 @@ type NullString struct {
 	s sql.NullString
 }
 
+// NullStringOf return NullString that he value is set.
+func NullStringOf(value string) NullString {
+	var s NullString
+	s.Set(value)
+	return s
+}
+
 // Valid return the value is valid. If true, it is not null value.
 func (s *NullString) Valid() bool {
 	return s.s.Valid

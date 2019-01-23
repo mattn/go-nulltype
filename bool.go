@@ -10,6 +10,13 @@ type NullBool struct {
 	b sql.NullBool
 }
 
+// NullBoolOf return NullBool that he value is set.
+func NullBoolOf(value bool) NullBool {
+	var b NullBool
+	b.Set(value)
+	return b
+}
+
 // Valid return the value is valid. If true, it is not null value.
 func (b *NullBool) Valid() bool {
 	return b.b.Valid
@@ -27,9 +34,10 @@ func (b *NullBool) Reset() {
 }
 
 // Set set the value.
-func (b *NullBool) Set(value bool) {
+func (b *NullBool) Set(value bool) *NullBool {
 	b.b.Valid = true
 	b.b.Bool = value
+	return b
 }
 
 // Scan is a method for database/sql.
