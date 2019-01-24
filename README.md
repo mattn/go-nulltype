@@ -5,6 +5,14 @@
 
 Nullable types friendly to json.Encoder, json.Decoder, database/sql, fmt.Stringer, some of ORMs.
 
+Supported types:
+
+* NullBool
+* NullString
+* NullFloat64
+* NullInt64
+* NullTime
+
 ## Usage
 
 ```go
