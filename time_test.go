@@ -108,7 +108,8 @@ func TestNullTimeUnmarshalJSON(t *testing.T) {
 func TestNullTimeValueConverter(t *testing.T) {
 	var nt NullTime
 
-	err := nt.Scan(time.Now())
+	now := time.Now()
+	err := nt.Scan(now)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -117,7 +118,6 @@ func TestNullTimeValueConverter(t *testing.T) {
 		t.Fatalf("must not be null but got nil")
 	}
 
-	now := time.Now()
 	want := now
 	got := nt.TimeValue()
 	if got != want {
