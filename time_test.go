@@ -103,6 +103,11 @@ func TestNullTimeUnmarshalJSON(t *testing.T) {
 	if err == nil {
 		t.Fatal("should be fail")
 	}
+
+	err = json.NewDecoder(strings.NewReader(`"2019-02-01"`)).Decode(&nt)
+	if err == nil {
+		t.Fatal("should be fail")
+	}
 }
 
 func TestNullTimeValueConverter(t *testing.T) {
