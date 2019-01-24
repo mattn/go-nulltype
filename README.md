@@ -42,7 +42,7 @@ fmt.Println(user.Name) // nil
 
 ```go
 var user User
-json.NewEncoder(os.Stdout).Encode(user) // {"name": nil}
+json.NewEncoder(os.Stdout).Encode(user) // {"name": null}
 
 user.Name.Set("Bob")
 json.NewEncoder(os.Stdout).Encode(user) // {"name": "Bob"}
