@@ -23,8 +23,8 @@ func (s *NullString) Valid() bool {
 	return s.s.Valid
 }
 
-// ToValue return the value.
-func (s *NullString) ToValue() string {
+// StringValue return the value.
+func (s *NullString) StringValue() string {
 	return s.s.String
 }
 

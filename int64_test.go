@@ -90,7 +90,7 @@ func TestNullInt64UnmarshalJSON(t *testing.T) {
 	}
 
 	want := int64(3)
-	got := i.ToValue()
+	got := i.Int64Value()
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
@@ -114,7 +114,7 @@ func TestNullInt64ValueConverter(t *testing.T) {
 	}
 
 	want := int64(3)
-	got := i.ToValue()
+	got := i.Int64Value()
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)
 	}

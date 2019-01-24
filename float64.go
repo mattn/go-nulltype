@@ -24,8 +24,8 @@ func (f *NullFloat64) Valid() bool {
 	return f.f.Valid
 }
 
-// ToValue return the value.
-func (f *NullFloat64) ToValue() float64 {
+// Float64Value return the value.
+func (f *NullFloat64) Float64Value() float64 {
 	return f.f.Float64
 }
 

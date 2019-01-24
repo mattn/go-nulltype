@@ -24,8 +24,8 @@ func (i *NullInt64) Valid() bool {
 	return i.i.Valid
 }
 
-// ToValue return the value.
-func (i *NullInt64) ToValue() int64 {
+// Int64Value return the value.
+func (i *NullInt64) Int64Value() int64 {
 	return i.i.Int64
 }
 

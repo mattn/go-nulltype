@@ -23,8 +23,8 @@ func (b *NullBool) Valid() bool {
 	return b.b.Valid
 }
 
-// ToValue return the value.
-func (b *NullBool) ToValue() bool {
+// BoolValue return the value.
+func (b *NullBool) BoolValue() bool {
 	return b.b.Bool
 }
 

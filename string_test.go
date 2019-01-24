@@ -91,7 +91,7 @@ func TestNullStringUnmarshalJSON(t *testing.T) {
 	}
 
 	want := "foo"
-	got := s.ToValue()
+	got := s.StringValue()
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
@@ -115,7 +115,7 @@ func TestNullStringValueConverter(t *testing.T) {
 	}
 
 	want := "1"
-	got := s.ToValue()
+	got := s.StringValue()
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
