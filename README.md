@@ -72,6 +72,8 @@ db.Exec(`INSERT INTO users(name) VALUES($1)`, user.Name)
 
 ### friendly to ORM
 
+Struct tag with [gorp](https://github.com/go-gorp/gorp).
+
 ```go
 type Post struct {
 	Id      int64 `db:"post_id"`
