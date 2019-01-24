@@ -32,7 +32,7 @@ fmt.Println(user.Name) // nil
 user.Name.Set("Bob")
 fmt.Println(user.Name) // Bob
 
-fmt.Println(user.Name.Value() == "Bob") // true
+fmt.Println(user.Name.StringValue() == "Bob") // true
 
 user.Name.Reset()
 fmt.Println(user.Name) // nil
