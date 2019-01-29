@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/mattn/go-nulltype.svg?branch=master)](https://travis-ci.org/mattn/go-nulltype)
 [![codecov](https://codecov.io/gh/mattn/go-nulltype/branch/master/graph/badge.svg)](https://codecov.io/gh/mattn/go-nulltype)
 
-Nullable types friendly to json.Encoder, json.Decoder, database/sql, fmt.Stringer, some of ORMs.
+Nullable types friendly to json.Encoder, json.Decoder, database/sql, fmt.Stringer, text/template, html/template, some of ORMs.
 
 Supported types:
 
