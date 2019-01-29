@@ -95,7 +95,7 @@ err = dbmap.Insert(&p)
 ## Installation
 
 ```
-go get github.com/mattn/go-nullable
+go get github.com/mattn/go-nulltype
 ```
 
 ## License
