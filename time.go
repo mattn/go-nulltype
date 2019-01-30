@@ -84,5 +84,8 @@ func (t *NullTime) UnmarshalJSON(data []byte) error {
 
 // Value implement driver.Valuer.
 func (t NullTime) Value() (driver.Value, error) {
+	if !t.Valid() {
+		return nil, nil
+	}
 	return t.t, nil
 }
