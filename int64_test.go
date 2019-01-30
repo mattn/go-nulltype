@@ -126,4 +126,14 @@ func TestNullInt64ValueConverter(t *testing.T) {
 	if gotv != want {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
+
+	i.Reset()
+
+	gotv, err = i.Value()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if gotv != nil {
+		t.Fatalf("must be null but got %v", gotv)
+	}
 }
