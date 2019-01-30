@@ -80,5 +80,8 @@ func (f *NullFloat64) UnmarshalJSON(data []byte) error {
 
 // Value implement driver.Valuer.
 func (f NullFloat64) Value() (driver.Value, error) {
+	if !f.Valid() {
+		return nil, nil
+	}
 	return f.f.Float64, nil
 }
