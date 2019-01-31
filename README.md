@@ -27,24 +27,29 @@ type User struct {
 
 ```go
 var user User
-fmt.Println(user.Name) // nil
+fmt.Println(user.Name.Valid()) // false
+fmt.Println(user.Name) // ""
 
 user.Name.Set("Bob")
-fmt.Println(user.Name) // Bob
+fmt.Println(user.Name.Valid()) // true
+fmt.Println(user.Name) // "Bob"
 
 fmt.Println(user.Name.StringValue() == "Bob") // true
 
 user.Name.Reset()
-fmt.Println(user.Name) // nil
+fmt.Println(user.Name.Valid()) // false
+fmt.Println(user.Name) // ""
 ```
 
 ### friendly to json.MarshalJSON
 
 ```go
 var user User
+fmt.Println(user.Name.Valid()) // false
 json.NewEncoder(os.Stdout).Encode(user) // {"name": null}
 
 user.Name.Set("Bob")
+fmt.Println(user.Name.Valid()) // true
 json.NewEncoder(os.Stdout).Encode(user) // {"name": "Bob"}
 ```
 
@@ -54,11 +59,13 @@ json.NewEncoder(os.Stdout).Encode(user) // {"name": "Bob"}
 var user User
 s := `{"name": "Bob"}`
 json.NewDecoder(strings.NewReader(s)).Decode(&user)
-fmt.Println(user.Name) // Bob
+fmt.Println(user.Name.Valid()) // true
+fmt.Println(user.Name) // "Bob"
 
 s = `{"name": null}`
 json.NewDecoder(strings.NewReader(s)).Decode(&user)
-fmt.Println(user.Name) // nil
+fmt.Println(user.Name.Valid()) // false
+fmt.Println(user.Name) // ""
 ```
 
 ### friendly to database/sql
@@ -66,7 +73,8 @@ fmt.Println(user.Name) // nil
 ```go
 var user User
 db.QueryRow(`SELECT name FROM users`).Scan(&user.Name)
-fmt.Println(user.Name) // Bob or nil
+fmt.Println(user.Name.Valid()) // true or false
+fmt.Println(user.Name) // "Bob" or ""
 db.Exec(`INSERT INTO users(name) VALUES($1)`, user.Name)
 ```
 
