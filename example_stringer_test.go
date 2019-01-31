@@ -10,7 +10,7 @@ type User struct {
 	Name nulltype.NullString `json:"name"`
 }
 
-func ExampleFmtStringer() {
+func Example_fmtStringer() {
 	var user User
 	fmt.Printf("%v, %q\n", user.Name.Valid(), user.Name)
 
