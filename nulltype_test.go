@@ -21,7 +21,7 @@ func TestTemplate(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	want := ",nil"
+	want := ","
 	got := buf.String()
 	if got != want {
 		t.Fatalf("want %q, but %q:", want, got)
@@ -33,7 +33,7 @@ func TestTemplate(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	want = "data1,nil"
+	want = "data1,"
 	got = buf.String()
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)

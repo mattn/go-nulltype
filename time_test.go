@@ -12,7 +12,7 @@ import (
 func TestNullTimeStringer(t *testing.T) {
 	var nt NullTime
 
-	want := "nil"
+	want := ""
 	got := fmt.Sprint(nt)
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)
@@ -32,7 +32,7 @@ func TestNullTimeStringer(t *testing.T) {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
 
-	want = "nil"
+	want = ""
 	nt.Reset()
 	got = fmt.Sprint(nt)
 	if got != want {

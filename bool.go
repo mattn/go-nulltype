@@ -49,7 +49,7 @@ func (b *NullBool) Scan(value interface{}) error {
 // String return string indicated the value.
 func (b NullBool) String() string {
 	if !b.b.Valid {
-		return "nil"
+		return ""
 	}
 	if b.b.Bool {
 		return "true"

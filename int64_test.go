@@ -11,7 +11,7 @@ import (
 func TestNullInt64Stringer(t *testing.T) {
 	var i NullInt64
 
-	want := "nil"
+	want := ""
 	got := fmt.Sprint(i)
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)
@@ -30,7 +30,7 @@ func TestNullInt64Stringer(t *testing.T) {
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
-	want = "nil"
+	want = ""
 	i.Reset()
 	got = fmt.Sprint(i)
 	if got != want {

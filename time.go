@@ -50,7 +50,7 @@ func (t *NullTime) Scan(value interface{}) error {
 // Time return string indicated the value.
 func (t NullTime) String() string {
 	if !t.v {
-		return "nil"
+		return ""
 	}
 	return t.t.Format("2006/01/02 15:04:05")
 }

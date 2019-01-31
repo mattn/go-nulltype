@@ -11,7 +11,7 @@ import (
 func TestNullStringStringer(t *testing.T) {
 	var s NullString
 
-	want := "nil"
+	want := ""
 	got := fmt.Sprint(s)
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)
@@ -31,7 +31,7 @@ func TestNullStringStringer(t *testing.T) {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
 
-	want = "nil"
+	want = ""
 	s.Reset()
 	got = fmt.Sprint(s)
 	if got != want {

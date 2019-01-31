@@ -48,7 +48,7 @@ func (s *NullString) Scan(value interface{}) error {
 // String return string indicated the value.
 func (s NullString) String() string {
 	if !s.s.Valid {
-		return "nil"
+		return ""
 	}
 	return s.s.String
 }

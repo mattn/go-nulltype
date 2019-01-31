@@ -50,7 +50,7 @@ func (f *NullFloat64) Scan(value interface{}) error {
 // String return string indicated the value.
 func (f NullFloat64) String() string {
 	if !f.f.Valid {
-		return "nil"
+		return ""
 	}
 	return fmt.Sprint(f.f.Float64)
 }

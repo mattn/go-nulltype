@@ -50,7 +50,7 @@ func (i *NullInt64) Scan(value interface{}) error {
 // String return string indicated the value.
 func (i NullInt64) String() string {
 	if !i.i.Valid {
-		return "nil"
+		return ""
 	}
 	return fmt.Sprint(i.i.Int64)
 }

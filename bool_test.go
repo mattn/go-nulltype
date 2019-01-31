@@ -11,7 +11,7 @@ import (
 func TestNullBoolStringer(t *testing.T) {
 	var b NullBool
 
-	want := "nil"
+	want := ""
 	got := fmt.Sprint(b)
 	if got != want {
 		t.Fatalf("want %v, but %v:", want, got)
@@ -31,7 +31,7 @@ func TestNullBoolStringer(t *testing.T) {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
 
-	want = "nil"
+	want = ""
 	b.Reset()
 	got = fmt.Sprint(b)
 	if got != want {
