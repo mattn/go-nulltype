@@ -156,4 +156,15 @@ func TestNullTimeValueConverter(t *testing.T) {
 	if gots != wants {
 		t.Fatalf("want %v, but %v:", wants, gots)
 	}
+
+	err = nt.Scan("2019+02+19")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	var v complex64
+	err = nt.Scan(v)
+	if err == nil {
+		t.Fatal("should be fail")
+	}
 }
