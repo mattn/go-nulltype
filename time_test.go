@@ -146,4 +146,14 @@ func TestNullTimeValueConverter(t *testing.T) {
 	if gotv != nil {
 		t.Fatalf("must be null but got %v", gotv)
 	}
+
+	err = nt.Scan("2019-02-19 17:53:00")
+	if err != nil {
+		t.Fatal(err)
+	}
+	wants := "2019-02-19 17:53:00"
+	gots := nt.TimeValue().Format("2006-01-02 15:04:05")
+	if gots != wants {
+		t.Fatalf("want %v, but %v:", wants, gots)
+	}
 }
