@@ -162,6 +162,11 @@ func TestNullTimeValueConverter(t *testing.T) {
 		t.Fatal(err)
 	}
 
+	err = nt.Scan(nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
 	var v complex64
 	err = nt.Scan(v)
 	if err == nil {
