@@ -1,6 +1,7 @@
 package nulltype
 
 import (
+	"database/sql"
 	"database/sql/driver"
 	"encoding/json"
 	"time"
@@ -41,9 +42,37 @@ func (t *NullTime) Set(value time.Time) {
 	t.t = value
 }
 
+var timestampFormats = []string{
+	"2006-01-02 15:04:05.999999999-07:00",
+	"2006-01-02T15:04:05.999999999-07:00",
+	"2006-01-02 15:04:05.999999999",
+	"2006-01-02T15:04:05.999999999",
+	"2006-01-02 15:04:05",
+	"2006-01-02T15:04:05",
+	"2006-01-02 15:04",
+	"2006-01-02T15:04",
+	"2006-01-02",
+	"2006/01/02 15:04:05",
+}
+
 // Scan is a method for database/sql.
 func (t *NullTime) Scan(value interface{}) error {
 	t.t, t.v = value.(time.Time)
+	if t.v {
+		return nil
+	}
+	var ns sql.NullString
+	if err := ns.Scan(value); err != nil {
+		return err
+	}
+	for _, tf := range timestampFormats {
+		if tt, err := time.Parse(tf, ns.String); err == nil {
+			t.t = tt
+			t.v = true
+			return nil
+		}
+
+	}
 	return nil
 }
 
