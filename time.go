@@ -65,6 +65,9 @@ func (t *NullTime) Scan(value interface{}) error {
 	if err := ns.Scan(value); err != nil {
 		return err
 	}
+	if !ns.Valid {
+		return nil
+	}
 	for _, tf := range timestampFormats {
 		if tt, err := time.Parse(tf, ns.String); err == nil {
 			t.t = tt
