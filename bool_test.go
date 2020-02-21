@@ -110,6 +110,21 @@ func TestNullBoolUnmarshalJSON(t *testing.T) {
 		t.Fatalf("want %v, but %v:", want, got)
 	}
 
+	err = json.NewDecoder(strings.NewReader("false")).Decode(&b)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if !b.Valid() {
+		t.Fatalf("must not be null but got nil")
+	}
+
+	want = false
+	got = b.BoolValue()
+	if got != want {
+		t.Fatalf("want %v, but %v:", want, got)
+	}
+
 	err = json.NewDecoder(strings.NewReader(`"foo"`)).Decode(&b)
 	if err == nil {
 		t.Fatal("should be fail")
