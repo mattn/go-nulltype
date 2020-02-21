@@ -75,7 +75,7 @@ func (b *NullBool) UnmarshalJSON(data []byte) error {
 	if value == nil {
 		b.b.Bool = false
 	} else {
-		b.b.Bool = true
+		b.b.Bool = *value
 	}
 	return nil
 }
