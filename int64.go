@@ -12,7 +12,7 @@ type NullInt64 struct {
 	i sql.NullInt64
 }
 
-// NullInt64Of return NullInt64 that he value is set.
+// NullInt64Of return NullInt64 that the value is set.
 func NullInt64Of(value int64) NullInt64 {
 	var s NullInt64
 	s.Set(value)

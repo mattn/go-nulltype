@@ -13,7 +13,7 @@ type NullTime struct {
 	v bool // Valid is true if Time is not NULL
 }
 
-// NullTimeOf return NullTime that he value is set.
+// NullTimeOf return NullTime that the value is set.
 func NullTimeOf(value time.Time) NullTime {
 	var t NullTime
 	t.Set(value)

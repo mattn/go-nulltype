@@ -11,7 +11,7 @@ type NullBool struct {
 	b sql.NullBool
 }
 
-// NullBoolOf return NullBool that he value is set.
+// NullBoolOf return NullBool that the value is set.
 func NullBoolOf(value bool) NullBool {
 	var b NullBool
 	b.Set(value)

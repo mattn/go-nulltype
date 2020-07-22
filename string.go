@@ -11,7 +11,7 @@ type NullString struct {
 	s sql.NullString
 }
 
-// NullStringOf return NullString that he value is set.
+// NullStringOf return NullString that the value is set.
 func NullStringOf(value string) NullString {
 	var s NullString
 	s.Set(value)
