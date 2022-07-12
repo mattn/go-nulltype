@@ -19,7 +19,7 @@ func NullStringOf(value string) NullString {
 }
 
 // Valid return the value is valid. If true, it is not null value.
-func (s *NullString) Valid() bool {
+func (s NullString) Valid() bool {
 	return s.s.Valid
 }
 

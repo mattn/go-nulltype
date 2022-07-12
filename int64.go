@@ -20,7 +20,7 @@ func NullInt64Of(value int64) NullInt64 {
 }
 
 // Valid return the value is valid. If true, it is not null value.
-func (i *NullInt64) Valid() bool {
+func (i NullInt64) Valid() bool {
 	return i.i.Valid
 }
 

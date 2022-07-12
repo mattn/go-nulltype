@@ -21,7 +21,7 @@ func NullTimeOf(value time.Time) NullTime {
 }
 
 // Valid return the value is valid. If true, it is not null value.
-func (t *NullTime) Valid() bool {
+func (t NullTime) Valid() bool {
 	return t.v
 }
 

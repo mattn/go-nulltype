@@ -19,7 +19,7 @@ func NullBoolOf(value bool) NullBool {
 }
 
 // Valid return the value is valid. If true, it is not null value.
-func (b *NullBool) Valid() bool {
+func (b NullBool) Valid() bool {
 	return b.b.Valid
 }
 

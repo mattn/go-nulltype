@@ -20,7 +20,7 @@ func NullFloat64Of(value float64) NullFloat64 {
 }
 
 // Valid return the value is valid. If true, it is not null value.
-func (f *NullFloat64) Valid() bool {
+func (f NullFloat64) Valid() bool {
 	return f.f.Valid
 }
 
